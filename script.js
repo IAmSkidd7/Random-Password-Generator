@@ -5,10 +5,12 @@ var generateBtn = document.querySelector("#generate");
 function generatePassword() {
   var count = Number(prompt("Please enter the amount of characters you would like in your password"));
   console.log(count);
-  if (count < 8 || count > 128) {
-    alert("Out of range.");
 
-    return "";
+  if (count < 8 || count > 128 || !count) {
+    alert("Please pick a number between 8 and 128!");
+    alert("Please type number!");
+    return '';
+
   }
   var letters = "abcdefghijklmnopqrstuvwxyz";
   var numbers = "1234567890";
@@ -16,19 +18,17 @@ function generatePassword() {
   var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   //  pool of characters that are valid to be added for selection
   // lower case letters are added by default
-  var pool = letters;
+  var pool = '';
+
+  if (confirm('Do you want lower case letters in your password?')) pool += letters;
+  console.log(pool)
   // adds numbers to pool if selected
-  if (confirm("Do you want numbers in your password")) {
-    pool += numbers;
-  }
+  if (confirm("Do you want numbers in your password?")) pool += numbers;
   // adds special character to pool for selection
-  if (confirm("Do you want special characters in your password")) {
-    pool += special;
-  }
+  if (confirm("Do you want special characters in your password?")) pool += special;
   // adds uppercase letters to pool for selection if desired
-  if (confirm("Do you want uppercase letters in your password")) {
-    pool += uppercase;
-  }
+  if (confirm("Do you want uppercase letters in your password?")) pool += uppercase;
+
 
   var genPassword = "";
   for (var i = 0; i < count; i++) {
